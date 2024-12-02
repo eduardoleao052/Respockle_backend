@@ -7,18 +7,7 @@ from django.utils.translation import gettext_lazy as _
 User.add_to_class('is_health_professional', models.BooleanField(default=False))
 
 # Customize the admin to include the new field
-class CustomUserAdmin(UserAdmin):
-    list_display = UserAdmin.list_display + ('is_health_professional',)
-    fieldsets = UserAdmin.fieldsets + (
-        (_('Additional Info'), {'fields': ('is_health_professional',)}),
-    )
-    add_fieldsets = UserAdmin.add_fieldsets + (
-        (_('Additional Info'), {'fields': ('is_health_professional',)}),
-    )
 
-# Unregister the default UserAdmin and register the customized one
-admin.site.unregister(User)
-admin.site.register(User, CustomUserAdmin)
 
 # Create your models here.
 class Community(models.Model):
